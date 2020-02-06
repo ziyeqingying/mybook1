@@ -13,7 +13,7 @@ after_script:
   - git config user.email "${USER_EMAIL}"
   - git add .  
   - touch README 
-  - git add README
+  - git add README 
   - git commit -m "publish gitbook"
   - git push --force --quiet "https://{GH_REF}" master:${P_BRANCH}
 

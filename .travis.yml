@@ -3,6 +3,7 @@ node_js:
   - "node"
 
 after_script:
+  - npm install gitbook-cli -g
   - gitbook install
   - gitbook build
   - grunt minify

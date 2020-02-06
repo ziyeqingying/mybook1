@@ -15,7 +15,6 @@ after_script:
   - gitbook install
   - gitbook build 
   - grunt minify
-  - cd ./_book
   - git init
   - git config user.name "${USER_NAME}"
   - git config user.email "${USER_EMAIL}"   

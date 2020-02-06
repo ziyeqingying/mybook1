@@ -18,7 +18,7 @@ after_script:
   - cd ./_book
   - git init
   - git config user.name "${USER_NAME}"
-  - git config user.email "${USER_EMAIL}"
+  - git config user.email "${USER_EMAIL}"   
   - git add .  
   - touch README   
   - git add README 

@@ -5,7 +5,7 @@ node_js:
 after_script:
   - npm install gitbook-cli -g
   - gitbook install
-  - gitbook build
+  - gitbook build 
   - grunt minify
   - cd ./_book
   - git init

@@ -5,7 +5,6 @@ deploy:
   provider: pages
   skip-cleanup: true
   github-token: $GH_TOKEN
-  local-dir: ./_book/ ## 根据情况自定义到静态文件输出目录
   target-branch: gh-pages
   verbose: true
   on:

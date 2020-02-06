@@ -1,22 +1,22 @@
 language: node_js
-branches:
-  only:
-  - master
-install:
- - npm install -g gitbook-cli
-script:
-- gitbook build
-
+node_js:
+  - "node"
 
 after_script:
-   - cd ./_book
-   - git init
-   - git config user.name "ziyeqingying"
-   - git config user.email "1220167224@qq.com"
-   - git add .
-   - git commit -m "Update Gitbook By TravisCI With Build $TRAVIS_BUILD_NUMBER"
-   - git push --force --quiet "https://ziyeqingying:${GH_TOKEN}@${GH_REF}" master:master
-   - git tag v0.0.$TRAVIS_BUILD_NUMBER -a -m "Auto Taged By TravisCI With Build $TRAVIS_BUILD_NUMBER"
-   - git push --quiet "https://ziyeqingying:${GH_TOKEN}@${GH_REF}" master:master --tags
-
-
+  - npm install gitbook-cli -g
+  - gitbook install
+  - gitbook build 
+  - grunt minify
+  - cd ./_book
+  - git init
+  - git config user.name "${USER_NAME}"
+  - git config user.email "${USER_EMAIL}"
+  - git add .  
+  - touch README 
+  - git add README 
+  - git commit -m "publish gitbook"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:${P_BRANCH}
+   
+branches:
+  only:
+    - master

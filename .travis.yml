@@ -1,28 +1,30 @@
 language: node_js
-node_js:
-  - "node"
+branches:
+  only:
+  - master
+install:
+ - npm install -g gitbook-cli
+script:
+- gitbook build
 deploy:
   provider: pages
   skip-cleanup: true
   github-token: $GH_TOKEN
+  local-dir: ./_book/ ## 根据情况自定义到静态文件输出目录
   target-branch: gh-pages
   verbose: true
   on:
     branch: master
+
 after_script:
-  - npm install gitbook-cli -g
-  - gitbook install
-  - gitbook build 
-  - grunt minify
-  - git init
-  - git config user.name "${USER_NAME}"
-  - git config user.email "${USER_EMAIL}"   
-  - git add .  
-  - touch README   
-  - git add README 
-  - git commit -m "publish gitbook"
-  - git push --force --quiet "https://ziyeqingying:${GH_TOKEN}@${GH_REF}" master:${P_BRANCH}
-   
-branches:
-  only:
-    - master
+   - cd ./_book
+   - git init
+   - git config user.name "ziyeqingying"
+   - git config user.email "1220167224@qq.com"
+   - git add .
+   - git commit -m "Update Gitbook By TravisCI With Build $TRAVIS_BUILD_NUMBER"
+   - git push --force --quiet "https://ziyeqingying:${GH_TOKEN}@${GH_REF}" master:master
+   - git tag v0.0.$TRAVIS_BUILD_NUMBER -a -m "Auto Taged By TravisCI With Build $TRAVIS_BUILD_NUMBER"
+   - git push --quiet "https://ziyeqingying:${GH_TOKEN}@${GH_REF}" master:master --tags
+
+

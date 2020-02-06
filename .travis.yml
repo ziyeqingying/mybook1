@@ -16,7 +16,7 @@ after_script:
   - git add README 
   - git commit -m "publish gitbook"
   - git push --force --quiet "https://{GH_REF}" master:${P_BRANCH}
-
+   
 branches:
   only:
     - master
